@@ -12,7 +12,10 @@ User = get_user_model()
 # custom Permission for the user_type --> 'admin'
 class permissionsToViewList(IsAdminUser):
     def has_permission(self,request,view):
-        return request.user.user_type == 'admin'
+        try:
+            return request.user.user_type == 'admin'
+        except:
+            return False
 
 
 # users app API views (i.e controllers)
