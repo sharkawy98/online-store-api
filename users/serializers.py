@@ -3,7 +3,8 @@ from rest_framework.authtoken.models import Token
 
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
+
+User = get_user_model()  # returns the custom user model
 
 
 # to display the value of the user type key in JSON Response
@@ -31,6 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 
+    # create new user with the validated data by UserSerializer
     def create(self, validated_data):
         user = User(
             username=validated_data['username'],

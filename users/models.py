@@ -2,7 +2,8 @@ from django.db import models
 
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+# extends django's default user model and add field to it
 class User(AbstractUser):
     USER_TYPES = (
         ('normal', 'Normal user'),
