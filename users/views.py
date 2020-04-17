@@ -9,21 +9,11 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 
-# custom Permission for the user_type --> 'admin'
-class permissionsToViewList(IsAdminUser):
-    def has_permission(self,request,view):
-        try:
-            return request.user.user_type == 'admin'
-        except:
-            return False
-
-
 # users app API views (i.e controllers)
-
 class RegisterApiView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 class ListUsersApiView(generics.ListAPIView):
-    permission_classes = (permissionsToViewList,) 
+    permission_classes = (IsAdminUser,) 
     queryset = User.objects.all()
     serializer_class = UserSerializer
